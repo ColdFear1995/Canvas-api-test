@@ -12,27 +12,30 @@ window.onload = () => {
         
         ctx.clearRect(0, 0, canvas.width, canvas.height);//在显示图片之前先清屏，将之前帧的图片去掉,清屏范围最好设置成画布的宽与高
         stage.draw(ctx);
-    
-}, 100)
+
+}, 1200)
 
 
 
      //文字
     var word1 = new TextField();
     word1.x = 20;
-    word1.y = 20;
-    word1.text = "TestTestTestTestTest";
-    word1.color = "#FF0000"
-    
+    word1.y = 40;
+    word1.text = "测试测试";
+    word1.color = "#000000";
+    word1.size = 30;
+    word1.font = "kaiTi"
     //图片
+
     var image = document.createElement("img");
     image.src = "123.jpg";
-
+    var bitmap=new Bitmap();
+    bitmap.image=image;
+    bitmap.x= 40;
+    bitmap.y= 40
     image.onload = () => {
 
-        var avater = new Bitmap();
-        avater.image = image;
-        stage.addChild(avater);
+        stage.addChild(bitmap);
         stage.addChild(word1);
     }
 };
@@ -89,11 +92,12 @@ class TextField extends DisplayObject {
     
     text: string = "";
     color : string = "";
-
-
+    size : number  ;
+    font : string = ""; 
     draw(context2D: CanvasRenderingContext2D) {
         
         context2D.fillStyle = this.color;
+        context2D.font = this.size+"px "+this.font;
         context2D.fillText(this.text, this.x, this.y);
 
     }
