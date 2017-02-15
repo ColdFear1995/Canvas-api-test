@@ -18,10 +18,10 @@ window.onload = function () {
     //文字
     var word1 = new TextField();
     word1.x = 20;
-    word1.y = 40;
-    word1.text = "测试测试";
+    word1.y = 60;
+    word1.stroketext = "测试测试";
     word1.color = "#000000";
-    word1.size = 30;
+    word1.size = 60;
     word1.font = "kaiTi";
     //图片
     var image = document.createElement("img");
@@ -29,7 +29,7 @@ window.onload = function () {
     var bitmap = new Bitmap();
     bitmap.image = image;
     bitmap.x = 40;
-    bitmap.y = 40;
+    bitmap.y = 60;
     image.onload = function () {
         stage.addChild(bitmap);
         stage.addChild(word1);
@@ -73,7 +73,8 @@ var TextField = (function (_super) {
     __extends(TextField, _super);
     function TextField() {
         _super.apply(this, arguments);
-        this.text = "";
+        this.text = ""; //实心字
+        this.stroketext = ""; //空心字
         this.color = "";
         this.font = "";
     }
@@ -81,6 +82,7 @@ var TextField = (function (_super) {
         context2D.fillStyle = this.color;
         context2D.font = this.size + "px " + this.font;
         context2D.fillText(this.text, this.x, this.y);
+        context2D.strokeText(this.stroketext, this.x, this.y);
     };
     return TextField;
 }(DisplayObject));
